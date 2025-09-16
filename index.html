@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio Site</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f4f4f4;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background-color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 6px;
+     
+    }
+
+    .logo {
+      font-size: 10px;
+      font-weight: bold;
+    }
+    .logo img{
+        height: 70px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      padding-bottom: 5px;
+      display: inline-block;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #007BFF;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: right;
+    }
+
+    nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    
+    .hero {
+      height: 300px;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 60px;
+      margin-bottom: 1rem;
+    }
+
+    .typing-text {
+      font-size: 40px;
+      border-right: 2px solid white;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 4s steps(30, end), blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    .cta-btn {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      background-color: #fff;
+      color: #764ba2;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      animation: pulse 2s infinite;
+    }
+
+    .cta-btn::after {
+      content: "";
+      position: absolute;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      transform: scale(0);
+      opacity: 0;
+      pointer-events: none;
+      animation: ripple 0.6s linear;
+    }
+
+    .cta-btn:active::after {
+      transform: scale(4);
+      opacity: 1;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
+      70% { box-shadow: 0 0 0 20px rgba(255,255,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+    }
+
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+
+    .portfolio {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .portfolio h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(10px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.1);
+    }
+
+    .card-text {
+      position: absolute;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 1;
+      transition: bottom 0.3s ease;
+    }
+
+    .card:hover .card-text {
+      bottom: 0;
+    }
+    .services{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+        background-color: #bbd8f7;
+    }
+    .ser{
+        margin-top: 2rem;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      background-color: #fff;
+      color: #764ba2;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .ser:hover{
+        display: inline-block;
+        transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><img src="avatar_2633286.png"></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Welcome to My Portfolio</h1>
+    <div class="typing-text">Hey Bro!</div>
+    <button class="cta-btn">Get Started</button>
+  </section>
+
+  <section class="portfolio" id="portfolio">
+    <h2>My Work</h2>
+    <div class="grid">
+
+      <div class="card">
+        <img src="anime-casino-illustration.jpg" alt="Project 1">
+        <div class="card-text">My Education</div>
+      </div>
+      <div class="card">
+        <img src="halloween-scene-illustration-anime-style (1).jpg" alt="Project 2">
+        <div class="card-text">My Skills</div>
+      </div>
+      <div class="card">
+        <img src="halloween-scene-illustration-anime-style (2).jpg" alt="Project 3">
+        <div class="card-text">My Hobbies</div>
+      </div>
+      <div class="card">
+        <img src="lone-samurai-icy-lake-glowing-moon.jpg" alt="Project 4">
+        <div class="card-text">My Acheivements</div>
+      </div>
+      <div class="card">
+        <img src="fox-spirit-luminous-bamboo-forest.jpg" alt="Project 5">
+        <div class="card-text">My Family</div>
+      </div>
+      <div class="card">
+        <img src="halloween-scene-illustration-anime-style.jpg" alt="Project 6">
+        <div class="card-text">My Experiences</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services">
+    <button class="ser"> Coding</button>
+    <button class="ser"> Wev Dev</button>
+    <button class="ser"> Problem Sovling</button>
+  </section>
+
+  <section style="display: flex;height: 100px; align-items: center; justify-content: center;" class="ser">
+    Name <input type="text"> </input>
+    Email<input type="email"> </input><br>
+    <input style="height:30px;width: 60px; background-color: #f4f5f5; font-size: medium;font-weight: 100";  type="submit">
+  </section>
+  <footer>
+    
+  </footer>
+
+</body>
+</html>
